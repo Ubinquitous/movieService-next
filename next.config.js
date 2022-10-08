@@ -19,6 +19,10 @@ const nextConfig = {
         source: '/api/movies',
         destination: `http://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchWeeklyBoxOfficeList.json?key=${API_KEY}`,
       },
+      {
+        source: "/api/movies/:id",
+        destination: `http://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchWeeklyBoxOfficeList.json?key=${API_KEY}`
+      }
     ];
   },
 }
