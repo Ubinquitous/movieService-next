@@ -2,30 +2,18 @@ import React, { useEffect, useState } from 'react';
 import SEO from '../components/SEO';
 import { movieData } from '../types/movieData';
 
-const Index = () => {
-    const [movies, setMovies] = useState([]);
+const Home = ({ movies }: any) => {
 
-    const getMovies = () => {
-        (async () => {
-            const data = await (await fetch(`/api/movies`)).json();
-            setMovies(data.boxOfficeResult.weeklyBoxOfficeList)
-            console.log(data.boxOfficeResult.weeklyBoxOfficeList);
-        })();
-    };
-
-    useEffect(() => {
-        getMovies();
-    }, []);
+    console.log(movies)
     return (
         <div>
             <SEO>Home</SEO>
-            {!movies && <h4>Loading</h4>}
             <div className='movie-wrap'>
                 <div className='movie-box'>
                     {movies.map((movie: movieData) => (
                         <div key={movie.rnum}>
                             <picture>
-                                <img src='https://www.kgnews.co.kr/data/photos/20220835/art_1661933622713_f74df6.jpg' alt='영화이미지' />
+                                <img src='https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif' alt='영화이미지' />
                             </picture>
                             <br />
                             <span>{movie.movieNm.length >= 15 ? `${movie.movieNm.slice(0, 15)}...` : movie.movieNm}</span>
@@ -58,4 +46,14 @@ const Index = () => {
     );
 };
 
-export default Index;
+export async function getServerSideProps() {
+    const data = await (await fetch(`http://localhost:3000/api/movies`)).json();
+    const movies = data.boxOfficeResult.weeklyBoxOfficeList
+    return {
+        props: {
+            movies,
+        }
+    }
+}
+
+export default Home;
