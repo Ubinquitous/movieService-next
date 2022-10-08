@@ -1,27 +1,43 @@
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import SEO from '../components/SEO';
 import { movieData } from '../types/movieData';
 
 const Home = ({ movies }: any) => {
-
     console.log(movies)
+    const router = useRouter();
+    const onClick = (id: any) => {
+        console.log(id)
+        router.push({
+            pathname: `/movies/${id}`,
+            query: {
+                id,
+                title: "ss",
+            }
+        })
+    }
+
     return (
         <div>
             <SEO>Home</SEO>
             <div className='movie-wrap'>
                 <div className='movie-box'>
                     {movies.map((movie: movieData) => (
-                        <div key={movie.rnum}>
-                            <picture>
-                                <img src='https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif' alt='영화이미지' />
-                            </picture>
-                            <br />
-                            <span>{movie.movieNm.length >= 15 ? `${movie.movieNm.slice(0, 15)}...` : movie.movieNm}</span>
-                        </div>
+                        <Link href={`/movies/${movie.audiAcc}`} key={movie.rnum} style={{ cursor: 'pointer' }}>
+                            <a onClick={() => onClick(movies.audiAcc)}>
+                                <picture>
+                                    <img src='https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FWddvk%2FbtqAqhHHM3k%2F6hAu4NLbmUqKfR2SVJ4bM1%2Fimg.png' alt='영화이미지' />
+                                </picture>
+                                <br />
+                                <span>{movie.movieNm.length >= 15 ? `${movie.movieNm.slice(0, 15)}...` : movie.movieNm}</span>
+                            </a>
+                        </Link>
                     ))}
                 </div>
             </div>
             <style jsx>{`
+
                 .movie-wrap {
                     display: grid;
                     place-items:center;
@@ -36,10 +52,15 @@ const Home = ({ movies }: any) => {
                     place-items: center;
                 }
 
+                a {
+                    text-decoration: none;
+                    color:black;
+                }
+
                 img {
                     border-radius: 4px;
                     width: 200px;
-                    height: auto;
+                    height: 300px;
                 }
             `}</style>
         </div>
