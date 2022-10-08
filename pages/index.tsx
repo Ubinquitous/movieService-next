@@ -1,7 +1,7 @@
 import React from 'react';
 import RouterBar from './RouterBar';
 
-const App = () => {
+const Haha = () => {
     return (
         <div>
             <h1>Hello</h1>
@@ -10,4 +10,4 @@ const App = () => {
     );
 };
 
-export default App;
+export default Haha;
