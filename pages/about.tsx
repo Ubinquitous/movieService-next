@@ -4,7 +4,10 @@ import RouterBar from './RouterBar';
 const about = () => {
     return (
         <div>
-            <RouterBar />
+            <h1>About</h1>
+            <div>
+                <RouterBar />
+            </div>
         </div>
     );
 };
