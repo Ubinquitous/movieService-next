@@ -1,15 +1,13 @@
 import React from 'react';
-import RouterBar from './RouterBar';
+import SEO from '../components/SEO';
 
-const about = () => {
+const About = () => {
     return (
         <div>
+            <SEO>About</SEO>
             <h1>About</h1>
-            <div>
-                <RouterBar />
-            </div>
         </div>
     );
 };
 
-export default about;
+export default About;
