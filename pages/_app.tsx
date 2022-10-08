@@ -1,12 +1,12 @@
 import React from 'react';
 import { AppProps } from 'next/app';
+import Layout from '../components/Layout';
 
 const App = ({ Component, pageProps }: AppProps) => {
     return (
-        <div>
+        <Layout>
             <Component {...pageProps} />
-            <span>Hellod</span>
-        </div>
+        </Layout>
     );
 };
 
