@@ -1,8 +1,13 @@
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
+import React from 'react';
+import { AppProps } from 'next/app';
 
-function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
-}
+const App = ({ Component, pageProps }: AppProps) => {
+    return (
+        <div>
+            <Component {...pageProps} />
+            <span>Hellod</span>
+        </div>
+    );
+};
 
-export default MyApp
+export default App;
